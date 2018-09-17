@@ -32,15 +32,18 @@
         </mu-menu>
       </mu-appbar>
     </div>
+  <Main class="main-body"></Main>
 </div>
 </template>
 
 <script>
 import Sidebar from '../components/layouts/Sidebar'
+import Main from '../components/layouts/Main'
 export default {
   name: 'Home',
   components :{
     Sidebar,
+    Main,
   },
   data () {
     return {
@@ -59,12 +62,12 @@ export default {
   .main-container {
     min-height: 100%;
     transition: margin-left .28s;
-    margin-left: 180px;
+    margin-left: 220px;
     position: relative;
   }
   .sidebar-container {
     transition: width 0.28s;
-    width: 180px !important;
+    width: 219px !important;
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -74,7 +77,9 @@ export default {
     z-index: 1001;
     overflow: hidden;
 }
-
+.main-body {
+  margin-left: 220px;
+}
 .active {
   transform: rotate(90deg);
 }
