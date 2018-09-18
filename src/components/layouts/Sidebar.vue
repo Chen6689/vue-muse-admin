@@ -30,6 +30,9 @@ export default {
 </script>
 
 <style scoped>
+.sidebar {
+    background-color: #eee;
+}
 .sidebar-avatar {
   background-color:#2196f3;
 }

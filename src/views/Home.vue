@@ -2,7 +2,7 @@
 <div>
     <Sidebar class="sidebar-container" :get-active="isActive"/>
     <div class="main-container">
-      <mu-appbar color="primary">
+      <mu-appbar color="primary" z-depth=1>
         <mu-button icon slot="left" :class="{ active: isActive }" @click="toggleClick">
           <mu-icon value="menu"></mu-icon>
         </mu-button>
@@ -31,8 +31,13 @@
           </mu-list>
         </mu-menu>
       </mu-appbar>
+
+      <section class="main-body">
+        <Main />
+      </section>
+
     </div>
-  <Main class="main-body"></Main>
+
 </div>
 </template>
 
@@ -78,7 +83,7 @@ export default {
     overflow: hidden;
 }
 .main-body {
-  margin-left: 220px;
+  padding: 20px;
 }
 .active {
   transform: rotate(90deg);
