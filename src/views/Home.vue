@@ -2,7 +2,7 @@
 <div>
     <Sidebar class="sidebar-container" :get-active="isActive"/>
     <div class="main-container">
-      <mu-appbar color="primary" z-depth=1>
+      <mu-appbar color="primary">
         <mu-button icon slot="left" :class="{ active: isActive }" @click="toggleClick">
           <mu-icon value="menu"></mu-icon>
         </mu-button>
@@ -23,9 +23,9 @@
                 <mu-list-item-title>设置</mu-list-item-title>
               </mu-list-item-content>
             </mu-list-item>
-            <mu-list-item button>
+            <mu-list-item button @click.native.prevent="onLogout">
               <mu-list-item-content>
-                <mu-list-item-title @click.native="logout">退出登录</mu-list-item-title>
+                <mu-list-item-title>退出登录</mu-list-item-title>
               </mu-list-item-content>
             </mu-list-item>
           </mu-list>
@@ -44,6 +44,7 @@
 <script>
 import Sidebar from '../components/layouts/Sidebar'
 import Main from '../components/layouts/Main'
+import ls from '../utils/localStorage'
 export default {
   name: 'Home',
   components :{
@@ -55,9 +56,22 @@ export default {
       isActive: false,
     }
   },
-  methods:{
+  methods: {
     toggleClick () {
       this.isActive =  !this.isActive;
+    },
+    onLogout () {
+      this.$message.confirm('确定要退出吗？', '提示', {
+        type: 'warning'
+      }).then(({ result }) => {
+        if (result) {
+          ls.removeItem('user');
+          this.$router.push({ path: '/auth/login' });
+          this.$toast.message('退出成功！');
+        } else {
+          this.$toast.message('操作成功！');
+        }
+      });
     }
   }
 }

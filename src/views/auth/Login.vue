@@ -58,12 +58,11 @@ export default {
               if (status == 'false') {
                 this.$toast.message(result);
               } else {
-                this.$toast.message('登录成功！');
-
                 setTimeout(() => {
                     ls.setItem('user', result);
                     this.$router.push({ path: '/' });
-                }, 1000)
+                    this.$toast.message('登录成功！');
+                }, 100)
               }
           })
         } else {
